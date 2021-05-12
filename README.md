@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# MatchPartner 
+------
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+------
+This app will connect you to people who need a partner for their favourite sports to make appointments for like playing Basketball.
 
-## Available Scripts
+## User Stories
+------
+* _404_ - As a user i can see a 404 page when i try to open a page that´s not existent
+* _SignUp_ - As a user i can SignUp to the platform, to be able to LogIn
+* _LogIn_ - As a user i can LogIn to the platform so i can create new matches or join pending matches
+* _LogOut_ - As a user i can LogOut from the plattform
+* _Profile_ - As a user i can see my Profile where i can see my created matches, edit, delete and create new matches
+* _Match-List_ - As a user i can see all the other offered matches that i could join and comment them
+------
 
-In the project directory, you can run:
+## Backlog
+------
+* Filter by sports
+* Upload profile image
+* NewsFeed of users favourite sport in profile
 
-### `yarn start`
+# Client
+------
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Routes
+------
+* /auth/signup - SignUp form
+* /auth/login - LogIn form
+* /Homepage - Profile
+* /Homepage/create - create a new match
+* /Homepage/edit - edit a pending match
+* /Homepage/delet - delete a match
+* /matches - list of matches
+* /404
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Pages
+------
+* Landing page?
+* SignUp page
+* LogIn page
+* Homepage (Profile)
+* Match list page
+* 404
 
-### `yarn test`
+## Components
+------
+* SignUp
+* SignIn
+* Profile
+* AddForm for matches
+* List of Matches
+* Navbar / Footer?
+* 404
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Server
+------
 
-### `yarn build`
+## Models
+------
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### User Model
+    username: String //required & unique
+    email: String //required & unique
+    password: String //required 
+    favourite sports: String
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Match Model
+    Sports type: String
+    Date & time: String
+    Duration: number
+    Number of participants: number
+    equipment needed
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Comment Model
 
-### `yarn eject`
+## API Endpoints/Backend Routes
+------
+* GET/auth/profile
+* POST/auth/signup
+* POST/auth/login
+* POST/auth/logout
+* GET/matchlist
+* POST/profile/newmatch
+* DELETE/profile/deletematch
+* PUT/profile/edit
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Links
+------
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Git
+------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Slides
+------
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### enjoy :tennis::basketball::soccer::football:
