@@ -1,4 +1,4 @@
-# MatchPartner 
+# MatchPartner :tennis::basketball::soccer::football:
 ------
 
 ## Description
@@ -13,6 +13,7 @@ This app will connect you to people who need a partner for their favourite sport
 * _LogOut_ - As a user i can LogOut from the plattform
 * _Profile_ - As a user i can see my Profile where i can see my created matches, edit, delete and create new matches
 * _Match-List_ - As a user i can see all the other offered matches that i could join and comment them
+* _Match-details_ -  as a user i can join the match, use the comment section and see all participants
 ------
 
 ## Backlog
@@ -26,22 +27,22 @@ This app will connect you to people who need a partner for their favourite sport
 
 ## Routes
 ------
+* / - Landing page
 * /auth/signup - SignUp form
 * /auth/login - LogIn form
-* /Homepage - Profile
-* /Homepage/create - create a new match
-* /Homepage/edit - edit a pending match
-* /Homepage/delet - delete a match
+* /profile
 * /matches - list of matches
+* /matchdetails - comment match
 * /404
 
 ## Pages
 ------
-* Landing page?
+* Homepage - Landing page
 * SignUp page
 * LogIn page
-* Homepage (Profile)
+* Profile page
 * Match list page
+* Match detail page wit comment section
 * 404
 
 ## Components
@@ -54,6 +55,14 @@ This app will connect you to people who need a partner for their favourite sport
 * Navbar / Footer?
 * 404
 
+## Services?
+------
+* Auth Service
+    auth.login()
+    auth.signup()
+    auth.signin()
+    auth.user()
+
 # Server
 ------
 
@@ -65,15 +74,21 @@ This app will connect you to people who need a partner for their favourite sport
     email: String //required & unique
     password: String //required 
     favourite sports: String
+    profile pic??: img
 
 ### Match Model
     Sports type: String
     Date & time: String
     Duration: number
     Number of participants: number
-    equipment needed
+    equipment needed: String
+    user: ['ref']
+    comments: ['ref']
 
 ### Comment Model
+    username: String
+    message: String
+    timestamps: true
 
 ## API Endpoints/Backend Routes
 ------
@@ -82,9 +97,12 @@ This app will connect you to people who need a partner for their favourite sport
 * POST/auth/login
 * POST/auth/logout
 * GET/matchlist
-* POST/profile/newmatch
-* DELETE/profile/deletematch
-* PUT/profile/edit
+* GET/detailedMatch
+* POST/profile/newMatch
+* DELETE/profile/deleteMatch
+* PATCH/profile/editMatch
+* POST/create comment
+* GET/detailedMatch/:id
 
 ## Links
 ------
@@ -97,4 +115,4 @@ This app will connect you to people who need a partner for their favourite sport
 
 
 
-### enjoy :tennis::basketball::soccer::football:
+### enjoy!! :slightly_smiling_face: 
