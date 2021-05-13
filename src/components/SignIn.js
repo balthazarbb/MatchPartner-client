@@ -3,6 +3,7 @@ import React from 'react';
 function SignIn(props){
     return (
         <form>
+        <h1>SignIn</h1>
             <div className="form-group">
                 <label htmlFor="InputEmail">Username</label>
                 <input type="email" className="form-control" id="InputEmail" name="email" />

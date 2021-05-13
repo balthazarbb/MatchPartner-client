@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, withRouter } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import SignUp from "./components/SignUp"
 import SignIn from "./components/SignIn"
@@ -20,23 +20,24 @@ class App extends Component {
       password: password.value
     } 
     console.log(newUser)
-    /*
+    
     axios.post(`${config.API_URL}/api/signup`, newUser)
     .then((response) => {
       this.setState({
         user: response.data
-      }), () => {
-        this.props.history.push('/')
-      }
+      }, () => {
+        this.props.history.push('/signin')
+      })
     })
     .catch((err) => {
-      console.log('SignUp not working')
-    }); */
+      console.log(err)
+    })
   }
 
   render() {
     return (
       <div>
+      <Switch>
         <Route exact path="/" component={HomePage} />
         <Route  path="/signup"  render={(routeProps) => {
 	        return  <SignUp onSubmit={this.handleSignUp} {...routeProps}  />
@@ -44,9 +45,10 @@ class App extends Component {
         <Route  path="/signin"  render={(routeProps) => {
 	        return  <SignIn {...routeProps}  />
         }}/>
+       </Switch>
       </div>
     )
   }
 }
 
-export default App
+export default withRouter(App)
