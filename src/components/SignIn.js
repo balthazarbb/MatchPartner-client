@@ -1,12 +1,13 @@
 import React from 'react';
 
 function SignIn(props){
+    const{onSignIn, error} = props
     return (
-        <form>
+        <form onSubmit={onSignIn}>
         <h1>SignIn</h1>
             <div className="form-group">
-                <label htmlFor="InputEmail">Username</label>
-                <input type="email" className="form-control" id="InputEmail" name="email" />
+                <label htmlFor="InputUsername">Username</label>
+                <input type="text" className="form-control" id="InputEmail" name="username" />
             </div>
             <div className="form-group">
                 <label htmlFor="InputPassword">Password</label>

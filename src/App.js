@@ -9,7 +9,8 @@ import config from "./config"
 
 class App extends Component {
   state = {
-    user: null
+    user: null,
+    error: null
   }
 
   handleSignUp = (e) => {
@@ -21,17 +22,43 @@ class App extends Component {
     } 
     console.log(newUser)
     
-    axios.post(`${config.API_URL}/api/signup`, newUser)
+    axios.post(`${config.API_URL}/api/signup`, newUser, {withCredentials: true})
     .then((response) => {
+      //real data is always in response.data
       this.setState({
+        //saving user to the state
         user: response.data
       }, () => {
+        //redirecting to login after signin
         this.props.history.push('/signin')
       })
     })
     .catch((err) => {
       console.log(err)
     })
+  }
+
+  handleSignIn = async (e) => {
+    console.log(newUser)
+    e.preventDefault()
+    const {username, password} = e.target
+    let newUser = {
+      username: username.value,
+      password: password.value
+    }
+
+    axios.post(`${config.API_URL}/api/signin`, newUser, {withCredentials: true})
+    .then((response) => {
+      this.setState({
+        username: response.data,
+        error: null
+      }, ()=>{
+        this.props.history.push('/')
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    });
   }
 
   render() {
