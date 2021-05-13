@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp"
 import SignIn from "./components/SignIn"
 import axios from "axios"
 import config from "./config"
+import MyProfile from "./components/MyProfile"
 
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
         username: response.data,
         error: null
       }, ()=>{
-        this.props.history.push('/')
+        this.props.history.push('/myprofile')
       })
     })
     .catch((errorObj) => {
@@ -60,6 +61,20 @@ class App extends Component {
         error: errorObj.response.data
       })
     });
+  }
+
+  handleLogout = () => {
+    axios.post(`${config.API_URL}/api/logout`, {}, {withCredentials: true})
+      .then(()=>{
+        this.setState({
+          user: null
+        })
+      })
+      .catch((errorObj)=>{
+        this.setState({
+          error: errorObj.response.data
+        })
+      })
   }
 
   render() {
@@ -74,6 +89,7 @@ class App extends Component {
         <Route  path="/signin"  render={(routeProps) => {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
+        <Route path="/MyProfile" component={MyProfile} />
        </Switch>
       </div>
     )
