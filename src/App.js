@@ -50,7 +50,7 @@ class App extends Component {
     axios.post(`${config.API_URL}/api/signin`, newUser, {withCredentials: true})
     .then((response) => {
       this.setState({
-        username: response.data,
+        user: response.data,
         error: null
       }, ()=>{
         this.props.history.push('/myprofile')
@@ -64,11 +64,11 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    axios.post(`${config.API_URL}/api/logout`, {}, {withCredentials: true})
+    axios.get(`${config.API_URL}/api/logout`, {withCredentials: true})
       .then(()=>{
         this.setState({
           user: null
-        })
+        }, this.props.history.push('/'))
       })
       .catch((errorObj)=>{
         this.setState({
@@ -78,19 +78,23 @@ class App extends Component {
   }
 
   render() {
-    const {error, username} = this.state
+    const {error, username, user} = this.state
     return (
       <div>
+      
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        
+        <Route exact path="/" component={HomePage} user={username}/>
         <Route  path="/signup"  render={(routeProps) => {
 	        return  <SignUp onSubmit={this.handleSignUp} {...routeProps}  />
         }}/>
         <Route  path="/signin"  render={(routeProps) => {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
-        <Route path="/MyProfile" component={MyProfile} />
+        
+        <MyProfile onLogout={this.handleLogout} user={username}/>
        </Switch>
+       
       </div>
     )
   }
