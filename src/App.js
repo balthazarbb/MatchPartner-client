@@ -39,7 +39,6 @@ class App extends Component {
   }
 
   handleSignIn = async (e) => {
-    console.log(newUser)
     e.preventDefault()
     const {username, password} = e.target
     let newUser = {
@@ -56,12 +55,15 @@ class App extends Component {
         this.props.history.push('/')
       })
     })
-    .catch((err) => {
-      console.log(err)
+    .catch((errorObj) => {
+      this.setState({
+        error: errorObj.response.data
+      })
     });
   }
 
   render() {
+    const {error, username} = this.state
     return (
       <div>
       <Switch>
@@ -70,7 +72,7 @@ class App extends Component {
 	        return  <SignUp onSubmit={this.handleSignUp} {...routeProps}  />
         }}/>
         <Route  path="/signin"  render={(routeProps) => {
-	        return  <SignIn {...routeProps}  />
+	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
        </Switch>
       </div>
