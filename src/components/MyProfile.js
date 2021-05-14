@@ -11,17 +11,16 @@ import Avatar from '@material-ui/core/Avatar';
 
 
 function MyProfile(props) {
-    const {username} = props
+    const {user} = props
      
         return (
             <div>  
 
-              <Switch>
-
+              
               <Card  variant="outlined">
                 <CardContent>
                 <Typography variant="h5" component="h2">
-                   <h2> Hi, {props.username}</h2>
+                   <h2> Hi, {user.username}</h2>
                 </Typography>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                 <Typography  color="textSecondary">
@@ -37,7 +36,7 @@ function MyProfile(props) {
                 <Button size="small">create your new match!!</Button>
                 </CardActions>
                 </Card>
-                </Switch>
+                
             </div>
         )
     

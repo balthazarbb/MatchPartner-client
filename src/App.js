@@ -93,7 +93,7 @@ class App extends Component {
         <Route  path="/signin"  render={(routeProps) => {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
-        <MyProfile />
+        <MyProfile  user={user}/>
         
        </Switch>
        
