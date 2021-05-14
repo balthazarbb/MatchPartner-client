@@ -97,7 +97,9 @@ class App extends Component {
   render() {
     const {error, username, user, fetchingUser} = this.state
 
-
+    if(fetchingUser){
+      return <p>Loading . . . </p>
+    }
 
     return (
       <div>

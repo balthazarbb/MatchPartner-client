@@ -7,8 +7,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Modal from '@material-ui/core/Modal';
+
+
+//import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
+
+import Modal from './Modal'
+
+
 
 
 function MyProfile(props) {
@@ -16,9 +21,27 @@ function MyProfile(props) {
      
         return (
             <div>  
+              
+              <Card  variant="outlined">
+                <CardContent>
+                    <Typography  color="textSecondary" gutterBottom>
+                        <h2>Hi, {user.username}</h2>
+                    </Typography>
+                    <Typography  color="textSecondary">
+                        insert img here somewhen
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                        well meaning and kindly.
+                            <br />
+                        {'"a benevolent smile"'}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                <Modal />
+                </CardActions>
+                </Card>
+                <Button size="small"></Button>
 
-              
-              
                 
             </div>
         )
@@ -26,3 +49,5 @@ function MyProfile(props) {
 }
 
 export default MyProfile
+
+
