@@ -6,7 +6,7 @@ import SignIn from "./components/SignIn"
 import axios from "axios"
 import config from "./config"
 import MyProfile from "./components/MyProfile"
-
+import Navbar from './components/Navbar'
 
 class App extends Component {
   state = {
