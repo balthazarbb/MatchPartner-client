@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Switch, Route, withRouter } from "react-router-dom"
+import { Switch, Route, withRouter, Link } from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import SignUp from "./components/SignUp"
 import SignIn from "./components/SignIn"
@@ -81,7 +81,9 @@ class App extends Component {
     const {error, username, user} = this.state
     return (
       <div>
-      
+      <div>
+      <Navbar onLogout={this.handleLogout} user={username} error={error}/>
+      </div>
       <Switch>
         
         <Route exact path="/" component={HomePage} user={username}/>
@@ -91,9 +93,10 @@ class App extends Component {
         <Route  path="/signin"  render={(routeProps) => {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
+        <MyProfile />
         
-        <Navbar onLogout={this.handleLogout} user={username} error={error}/>
        </Switch>
+       
        
       </div>
     )
