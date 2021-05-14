@@ -92,7 +92,7 @@ class App extends Component {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
         
-        <MyProfile onLogout={this.handleLogout} user={username}/>
+        <Navbar onLogout={this.handleLogout} user={username} error={error}/>
        </Switch>
        
       </div>
