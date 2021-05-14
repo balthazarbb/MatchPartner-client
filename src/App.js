@@ -7,11 +7,13 @@ import axios from "axios"
 import config from "./config"
 import MyProfile from "./components/MyProfile"
 import Navbar from './components/Navbar'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class App extends Component {
   state = {
     user: null,
-    error: null
+    error: null,
+    fetchingUser: true
   }
 
   handleSignUp = (e) => {
@@ -76,13 +78,31 @@ class App extends Component {
         })
       })
   }
+  componentDidMount() {
+    axios.get(`${config.API_URL}/api/user`, {withCredentials: true}) 
+    .then((response) => {
+      this.setState({ 
+        user: response.data,
+        fetchingUser: false,
+      })
+    })
+    .catch((errorObj) => {
+      this.setState({
+        error: errorObj.response.data,
+        fetchingUser: false,
+      })
+    })    
+  }
 
   render() {
-    const {error, username, user} = this.state
+    const {error, username, user, fetchingUser} = this.state
+
+
+
     return (
       <div>
       <div>
-      <Navbar onLogout={this.handleLogout} user={username} error={error}/>
+      <Navbar onLogout={this.handleLogout} user={username} error={error} />
       </div>
       <Switch>
         

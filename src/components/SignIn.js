@@ -14,6 +14,11 @@ function SignIn(props){
                 <input name="password" type="password" className="form-control" id="InputPassword" />
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
+            {
+             // error ? () : ('') //does the same as below
+                //if else
+              error &&  (<p style ={{color: 'red'}}>{error.error}</p>)
+            }
         </form>
     )
 }
