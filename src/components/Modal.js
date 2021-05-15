@@ -33,7 +33,7 @@ function TransitionsModal() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const {onAdd} = this.props
   return (
     <div>
       <button type="button" onClick={handleOpen}>
@@ -55,13 +55,13 @@ function TransitionsModal() {
           <div className={classes.paper}>
             <div id="transition-modal-title">Transition modal</div>
             <p id="transition-modal-description">react-transition-group animates me.</p>
-            <form>
+            <form onSubmit={onAdd} >
             <form className={classes.root} noValidate autoComplete="off">
             <TextField id="outlined-basic" label="Type of Sports" variant="outlined" />
             <TextField id="outlined-basic" label="Date & Time" variant="outlined" />
             <TextField id="outlined-basic" label="Number of players" variant="outlined" />
             <TextField id="outlined-basic" label="special Equipment" variant="outlined" /> 
-            <Button variant="contained" color="primary" href="#contained-buttons">
+            <Button type='submit' variant="contained" color="primary" href="#contained-buttons">
             Find Matchpartners
             </Button> 
             </form>

@@ -9,13 +9,14 @@ import MyProfile from "./components/MyProfile"
 import Navbar from './components/Navbar'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AllMatches from "./components/AllMatches"
+import { Modal } from "@material-ui/core"
 
 class App extends Component {
   state = {
     user: null,
     error: null,
     fetchingUser: true,
-    matches: []
+//    matches: []
   }
 
   handleSignUp = (e) => {
@@ -81,13 +82,13 @@ class App extends Component {
       })
   }
   componentDidMount() {
-    axios.get('http://localhost:5005/api/matches')
+  /*  axios.get(`${config.API_URL}/api/matches`)
     .then((response) => {
       this.setState({matches: response.data})
       
     }).catch((err) => {
       
-    });
+    });*/
 
     axios.get(`${config.API_URL}/api/user`, {withCredentials: true}) 
     .then((response) => {
@@ -104,7 +105,11 @@ class App extends Component {
     })    
   }
 
-  render() {
+  handleAdd = () => {
+    //update DB nad the state
+  }
+
+  render() {               
     const {error, username, user, fetchingUser, matches} = this.state
 
     if(fetchingUser){
@@ -126,11 +131,15 @@ class App extends Component {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
         <MyProfile  user={user}/>
-        <Route exact path="/" render={()=>{
-          return <AllMatches matches={matches}/>
+        
+        <Route path="/profile" render={(routeProps)=>{
+          return <AllMatches matches={matches} {...routeProps} />
         }} />
-        
-        
+            
+        <Route path="/modal" render={()=>{
+          return <Modal on onAdd={this.handleAdd} />
+        }} />
+
        </Switch>
        
        
@@ -140,3 +149,9 @@ class App extends Component {
 }
 
 export default withRouter(App)
+
+/*
+        <Route  path="/myprofile#contained-buttons"  render={() => {
+	        return  <CreateMatch  onAdd={this.handleAdd} />
+        }}/>
+*/

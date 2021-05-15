@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, Switch} from 'react-router-dom'
+import {Link, Switch,} from 'react-router-dom'
 import Navbar from './Navbar'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -43,6 +43,9 @@ function MyProfile(props) {
                 </Card>
                 <Button size="small"></Button>
                 <AllMatches />
+
+            
+                
 
                
 
