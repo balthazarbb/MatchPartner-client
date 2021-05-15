@@ -8,12 +8,14 @@ import config from "./config"
 import MyProfile from "./components/MyProfile"
 import Navbar from './components/Navbar'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AllMatches from "./components/AllMatches"
 
 class App extends Component {
   state = {
     user: null,
     error: null,
-    fetchingUser: true
+    fetchingUser: true,
+    matches: []
   }
 
   handleSignUp = (e) => {
@@ -79,6 +81,14 @@ class App extends Component {
       })
   }
   componentDidMount() {
+    axios.get('http://localhost:5005/api/matches')
+    .then((response) => {
+      this.setState({matches: response.data})
+      
+    }).catch((err) => {
+      
+    });
+
     axios.get(`${config.API_URL}/api/user`, {withCredentials: true}) 
     .then((response) => {
       this.setState({ 
@@ -95,7 +105,7 @@ class App extends Component {
   }
 
   render() {
-    const {error, username, user, fetchingUser} = this.state
+    const {error, username, user, fetchingUser, matches} = this.state
 
     if(fetchingUser){
       return <p>Loading . . . </p>
@@ -116,6 +126,10 @@ class App extends Component {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
         <MyProfile  user={user}/>
+        <Route exact path="/" render={()=>{
+          return <AllMatches matches={matches}/>
+        }} />
+        
         
        </Switch>
        

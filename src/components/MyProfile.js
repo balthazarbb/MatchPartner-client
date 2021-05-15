@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-
+import AllMatches from './AllMatches'
 
 
 //import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
@@ -42,6 +42,7 @@ function MyProfile(props) {
                 </CardActions>
                 </Card>
                 <Button size="small"></Button>
+                <AllMatches />
 
                
 
