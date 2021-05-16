@@ -28,6 +28,8 @@ componentDidMount(){
                     matches.map((match)=>{
                         return <div key={matches._id}>
                         <Link to={`/matches/${match._id}`}>{match.sports}</Link>
+                        <button>edit</button>
+                        <button>delete</button>
                         </div>
                     })
                 }

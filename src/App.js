@@ -141,8 +141,8 @@ class App extends Component {
           return <Modal on onAdd={this.handleAdd} />
         }} />
 
-        <Route exact path="/matches/:matches" render={(routeProps)=>{
-          return <MatchesDetail {...routeProps}/>
+        <Route path="/matches/:matchesId" render={(routeProps)=>{
+          return <MatchesDetail {...routeProps} />
         }}/>
 
        </Switch>
