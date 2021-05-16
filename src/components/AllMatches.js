@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import config from "../config"
 import { Link } from 'react-router-dom'
+//import Modal from './Modal'
+import AddForm from './AddForm'
 
 class AllMatches extends Component {
 state = {
@@ -21,12 +23,17 @@ componentDidMount(){
 
     render() {
         const {matches}  = this.state
+        const {onAdd} = this.props
         return (
             <div>
                <h1>Matchlist</h1>
+
+            <AddForm onAdd={onAdd} />
+
+
                {
                     matches.map((match)=>{
-                        return <div key={matches._id}>
+                        return <div key={match._id}>
                         <Link to={`/matches/${match._id}`}>{match.sports}</Link>
                         <button>edit</button>
                         <button>delete</button>

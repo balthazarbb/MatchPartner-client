@@ -11,13 +11,13 @@ import AllMatches from './AllMatches'
 
 
 
-import Modal from './Modal'
+import Modal from './AddForm'
 
 
 
 
 function MyProfile(props) {
-    const {user} = props
+    const {user, onAdd} = props
      
         return (
             <div>  
@@ -37,11 +37,10 @@ function MyProfile(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                <Modal />
                 </CardActions>
                 </Card>
                 <Button size="small"></Button>
-                <AllMatches />
+                <AllMatches onAdd={onAdd} user={user}/>
 
             
                 

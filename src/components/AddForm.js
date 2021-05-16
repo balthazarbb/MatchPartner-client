@@ -21,7 +21,7 @@ export default Modal
 
 
 
-
+/*
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
@@ -29,9 +29,31 @@ import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
+*/
 
 
 
+
+import React, { Component } from  'react'
+
+class AddForm extends Component {
+
+	render() {
+    const {onAdd} = this.props
+		return (
+			<form onSubmit={onAdd}>
+				<input  name="sports"  type="text"  placeholder="Enter name"/>
+				<input  name="username"  type="text"  placeholder="Enter name"/>
+				<button  type="submit"  >Submit</button>
+			</form>
+		)
+	}
+}
+
+export  default AddForm
+
+
+/*
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
@@ -101,4 +123,4 @@ function TransitionsModal() {
 }
 export default TransitionsModal
 
-
+ */

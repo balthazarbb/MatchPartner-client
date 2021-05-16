@@ -9,8 +9,9 @@ import MyProfile from "./components/MyProfile"
 import Navbar from './components/Navbar'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AllMatches from "./components/AllMatches"
-import { Modal } from "@material-ui/core"
+//import { Modal } from "@material-ui/core"
 import MatchesDetail from "./components/MatchesDetail"
+import AddForm from './components/AddForm'
 
 class App extends Component {
   state = {
@@ -59,7 +60,7 @@ class App extends Component {
         user: response.data,
         error: null
       }, ()=>{
-        this.props.history.push('/myprofile')
+        this.props.history.push('/profile')
       })
     })
     .catch((errorObj) => {
@@ -106,8 +107,31 @@ class App extends Component {
     })    
   }
 
-  handleAdd = () => {
-    //update DB nad the state
+  handleAdd = (event) => {
+    //update DB and the state
+    event.preventDefault()
+    let newMatch={
+      sports: event.target.sports.value,
+      username: event.target.username.value,
+      //completed: false
+    }
+    console.log('something')
+    axios.post(`${config.API_URL}/api/create`, newMatch, {withCredentials: true})
+    .then((result) => {
+      console.log(result)
+      this.setState({
+        
+        matches: [result.data, ... this.state.matches]
+      })/*,()=>{
+        //redirect
+        this.props.history.push(('/profile'))
+      }*/
+      
+    })
+    .catch((err) => {
+      console.log('add match fail')
+    });
+
   }
 
   render() {               
@@ -122,6 +146,7 @@ class App extends Component {
       <div>
       <Navbar onLogout={this.handleLogout} user={username} error={error} />
       </div>
+      
       <Switch>
         
         <Route exact path="/" component={HomePage} user={username}/>
@@ -131,19 +156,19 @@ class App extends Component {
         <Route  path="/signin"  render={(routeProps) => {
 	        return  <SignIn error={error} onSignIn={this.handleSignIn} {...routeProps}  />
         }}/>
-        <MyProfile  user={user}/>
         
-        <Route path="/profile" render={(routeProps)=>{
-          return <AllMatches matches={matches} {...routeProps} />
+        <Route exact path="/profile" render={(routeProps)=>{
+          return <MyProfile user={user} onAdd={this.handleAdd} matches={matches} {...routeProps} />
         }} />
             
-        <Route path="/modal" render={()=>{
-          return <Modal on onAdd={this.handleAdd} />
-        }} />
+
 
         <Route path="/matches/:matchesId" render={(routeProps)=>{
           return <MatchesDetail {...routeProps} />
         }}/>
+
+
+      
 
        </Switch>
        
@@ -156,9 +181,9 @@ class App extends Component {
 export default withRouter(App)
 
 /*
-        <Route  path="/myprofile#contained-buttons"  render={() => {
-	        return  <CreateMatch  onAdd={this.handleAdd} />
-        }}/>
+        <Route path="/modal" render={()=>{
+          return <Modal onAdd={this.handleAdd} />
+        }} />
 */
 
 
