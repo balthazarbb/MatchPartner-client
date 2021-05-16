@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography'
 import AllMatches from './AllMatches'
 
 
-//import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 
 import Modal from './Modal'
 

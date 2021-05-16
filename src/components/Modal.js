@@ -1,3 +1,27 @@
+/*
+import React, { Component } from 'react'
+
+class Modal extends Component {
+  render() {
+    const{onAdd}=this.props
+    return (
+      <div>
+        <form onSubmit={onAdd}>
+				<input  name='sports'  type='text'  placeholder='Enter name'/>
+				<button type='submit' >Submit</button>
+			  </form>
+
+
+      </div>
+    )
+  }
+}
+export default Modal
+*/
+
+
+
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
@@ -33,7 +57,9 @@ function TransitionsModal() {
   const handleClose = () => {
     setOpen(false);
   };
-  const {onAdd} = this.props
+
+
+  //const {onAdd} = this.props
   return (
     <div>
       <button type="button" onClick={handleOpen}>
@@ -55,12 +81,13 @@ function TransitionsModal() {
           <div className={classes.paper}>
             <div id="transition-modal-title">Transition modal</div>
             <p id="transition-modal-description">react-transition-group animates me.</p>
-            <form onSubmit={onAdd} >
+            <form  >
             <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="outlined-basic" label="Type of Sports" variant="outlined" />
-            <TextField id="outlined-basic" label="Date & Time" variant="outlined" />
-            <TextField id="outlined-basic" label="Number of players" variant="outlined" />
-            <TextField id="outlined-basic" label="special Equipment" variant="outlined" /> 
+            <TextField value='sports' id="outlined-basic" name='sports' label="Type of Sports" variant="outlined" />
+            <TextField value='duration' id="outlined-basic" name='duration' label="Duration" variant="outlined" />
+            <TextField value='dateAndTime' id="outlined-basic" name='dateAndTime' label="Date & Time" variant="outlined" />
+            <TextField value='numberOfParticipants' id="outlined-basic" name='numberOfParticipants' label="Number of players" variant="outlined" />
+            <TextField value='equipment' id="outlined-basic" name='equipment' label="Special Equipment" variant="outlined" /> 
             <Button type='submit' variant="contained" color="primary" href="#contained-buttons">
             Find Matchpartners
             </Button> 
@@ -73,3 +100,5 @@ function TransitionsModal() {
   );
 }
 export default TransitionsModal
+
+
