@@ -42,9 +42,10 @@ class AddForm extends Component {
     const {onAdd} = this.props
 		return (
 			<form onSubmit={onAdd}>
-				<input  name="sports"  type="text"  placeholder="Enter name"/>
-				<input  name="username"  type="text"  placeholder="Enter name"/>
-				<button  type="submit"  >Submit</button>
+				<input name="sports"  type="text" placeholder="Enter name"/>
+				<input name="username"  type="text" placeholder="Enter name"/>
+				<button type="submit" >Submit</button>
+        
 			</form>
 		)
 	}

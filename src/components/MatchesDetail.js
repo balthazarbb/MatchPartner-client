@@ -2,12 +2,14 @@ import axios from 'axios'
 import React, { Component } from 'react'
 //import config from "./config"
 
+
 class MatchesDetail extends Component {
     
     state={
-        matchesDetail: {}
+        match: {}
     }
-/*      Details were not shown
+     
+/*
     componentDidMount(){
         let matchesId = this.props.match.params.matchesId
         axios.get(`${config.API_URL}/api/matches/${matchesId}`, {withCredentials: true})
@@ -19,14 +21,15 @@ class MatchesDetail extends Component {
             });
             
     } 
-    */
-    render() {
-        const {matchesDetail} = this.state
+*/
+
+    render() { //wrong?
+        const {match} = this.state
         return (
             <div>
                 <h1>Match Details</h1>
-                <div>{matchesDetail.username}</div>
-                <div>{matchesDetail.sports}</div>
+                <div>{match.username}</div>
+                <div>{match.sports}</div>
                 <button>Join</button>
             </div>
         )
@@ -34,3 +37,4 @@ class MatchesDetail extends Component {
 }
 
 export default MatchesDetail
+

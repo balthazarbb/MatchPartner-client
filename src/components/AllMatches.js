@@ -6,24 +6,10 @@ import { Link } from 'react-router-dom'
 import AddForm from './AddForm'
 
 class AllMatches extends Component {
-state = {
-    matches:[]
-}
-
-componentDidMount(){
-    axios.get(`${config.API_URL}/api/matches`)
-    .then((response) => {
-      this.setState({matches: response.data})
-      
-    })
-    .catch((err) => {
-      
-    });
-} 
+ 
 
     render() {
-        const {matches}  = this.state
-        const {onAdd} = this.props
+        const {onAdd, onDelete, matches} = this.props
         return (
             <div>
                <h1>Matchlist</h1>
@@ -33,10 +19,10 @@ componentDidMount(){
 
                {
                     matches.map((match)=>{
-                        return <div key={match._id}>
+                        return <div key={match._id}>    
                         <Link to={`/matches/${match._id}`}>{match.sports}</Link>
-                        <button>edit</button>
-                        <button>delete</button>
+                            <button>edit</button>
+                            <button onClick={()=> {onDelete(match._id)}}>delete</button>
                         </div>
                     })
                 }
@@ -51,13 +37,7 @@ export default AllMatches
 
 
 /*
-{
-    matches.map((matches)=>{
-        return <div>
-        <Link to={`/matches/${matches._id}`}>{matches.name}</Link>
-        </div>
-    })
-}
-                 
+
+                 <button onClick={()=> {onDelete(matches)}}>delete</button> 
 */ 
 

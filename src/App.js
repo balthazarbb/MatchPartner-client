@@ -113,25 +113,41 @@ class App extends Component {
     let newMatch={
       sports: event.target.sports.value,
       username: event.target.username.value,
-      //completed: false
+      completed: false
     }
+
     console.log('something')
     axios.post(`${config.API_URL}/api/create`, newMatch, {withCredentials: true})
     .then((result) => {
-      console.log(result)
       this.setState({
-        
-        matches: [result.data, ... this.state.matches]
-      })/*,()=>{
-        //redirect
-        this.props.history.push(('/profile'))
-      }*/
-      
+         matches: [result.data, ...this.state.matches]
+        }, () => {
+          console.log(this.state.matches)
+          this.props.history.push('/profile')
+        })
     })
     .catch((err) => {
       console.log('add match fail')
     });
 
+  }
+
+  handleDelete = (matches)=>{
+      axios.delete(`${config.API_URL}/api/matches/${matches}`, {withCredentials: true})
+      .then(() => {
+        console.log('DELETING')
+        let filterMatches = this.state.matches.filter((match)=>{
+          return match._id !== matches
+        })
+        this.setState({
+          matches: filterMatches
+        }, ()=>{
+          this.props.history.push('/profile')
+        })
+      })
+      .catch((err) => {
+        console.log('delete not working')
+      });
   }
 
   render() {               
@@ -158,17 +174,13 @@ class App extends Component {
         }}/>
         
         <Route exact path="/profile" render={(routeProps)=>{
-          return <MyProfile user={user} onAdd={this.handleAdd} matches={matches} {...routeProps} />
+          return <MyProfile user={user} onAdd={this.handleAdd} matches={matches} onDelete={this.handleDelete}  {...routeProps} />
         }} />
-            
-
 
         <Route path="/matches/:matchesId" render={(routeProps)=>{
           return <MatchesDetail {...routeProps} />
         }}/>
-
-
-      
+            
 
        </Switch>
        
