@@ -1,35 +1,42 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-//import config from "./config"
+import config from "../config"
 
 
 class MatchesDetail extends Component {
     
     state={
-        match: {}
+        matches: {}
     }
      
-/*
+
     componentDidMount(){
+        console.log(this.props)
         let matchesId = this.props.match.params.matchesId
+        console.log(matchesId)
         axios.get(`${config.API_URL}/api/matches/${matchesId}`, {withCredentials: true})
+        
             .then((response) => {
-                this.setState({matchesDetail: response.data}) 
+                console.log('inside of then block', response.data)
+                this.setState({matches: response.data}) 
+
             })
             .catch((err) => {
             console.log('detail view crashed')
             });
             
     } 
-*/
 
     render() { //wrong?
-        const {match} = this.state
+        console.log(this.props)
+        const {matches} = this.state
+        console.log(matches)
         return (
+
             <div>
                 <h1>Match Details</h1>
-                <div>{match.username}</div>
-                <div>{match.sports}</div>
+                <div>{matches.user}</div>
+                <div>{matches.sports}</div>
                 <button>Join</button>
             </div>
         )
@@ -38,3 +45,6 @@ class MatchesDetail extends Component {
 
 export default MatchesDetail
 
+/*
+
+ */

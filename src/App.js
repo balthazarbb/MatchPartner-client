@@ -177,8 +177,8 @@ class App extends Component {
           return <MyProfile user={user} onAdd={this.handleAdd} matches={matches} onDelete={this.handleDelete}  {...routeProps} />
         }} />
 
-        <Route path="/matches/:matchesId" render={(routeProps)=>{
-          return <MatchesDetail {...routeProps} />
+        <Route exact path="/matches/:matchesId" render={(routeProps)=>{
+          return <MatchesDetail matches={matches} {...routeProps} />
         }}/>
             
 
