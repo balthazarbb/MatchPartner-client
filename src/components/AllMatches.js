@@ -14,7 +14,7 @@ class AllMatches extends Component {
             <div>
                <h1>Matchlist</h1>
 
-            <AddForm onAdd={onAdd} />
+               <AddForm onAdd={onAdd} />
 
 
                {
@@ -26,8 +26,7 @@ class AllMatches extends Component {
                         </div>
                     })
                 }
-
-
+                
             </div>
         )
     }

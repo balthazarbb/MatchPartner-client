@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton'
 import {Link} from 'react-router-dom'
 
 function Navbar(props) {
-    const {username, onLogout} = props
+    const {username, onLogout, user} = props
     return(
         <AppBar position="static">
             <Toolbar>
@@ -18,7 +18,17 @@ function Navbar(props) {
                     <Typography variant="h6" >
                          <h1>MatchPartner</h1>
                     </Typography>
-                <Button onClick={onLogout} color="inherit">Logout</Button>
+                 {   
+                user? (    
+                <div>
+                    <Button onClick={onLogout} color="inherit">Logout</Button>
+                </div>
+                ):(
+                  <div>
+
+                  </div>  
+                )
+                }
             </Toolbar>
         </AppBar>
     )
