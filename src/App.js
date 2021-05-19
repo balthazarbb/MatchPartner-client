@@ -85,6 +85,43 @@ class App extends Component {
         })
       })
   }
+
+  fetchDetails = () => {
+        axios.get(`${config.API_URL}/api/matches`)
+    .then((response) => {
+      this.setState({matches: response.data})
+      
+    })
+    .catch((err) => {
+      
+    });
+
+    axios.get(`${config.API_URL}/api/user`, {withCredentials: true}) 
+    .then((response) => {
+      this.setState({ 
+        user: response.data,
+        fetchingUser: false,
+      })
+    })
+    .catch((errorObj) => {
+      this.setState({
+        error: errorObj.data,
+        fetchingUser: false,
+      })
+    })
+  }
+ //Details wrong?
+  componentDidMount () {
+    this.fetchDetails()
+    }
+
+  componentDidUpdate (prevProps) {
+    if(prevProps.comments !== this.props.comments){
+      this.fetchDetails()
+        }
+    }
+
+/*
   componentDidMount() {
     axios.get(`${config.API_URL}/api/matches`)
     .then((response) => {
@@ -109,7 +146,7 @@ class App extends Component {
       })
     })    
   }
-
+*/
 
   handleJoin = (matchId) => {
     console.log(matchId)
@@ -129,7 +166,10 @@ class App extends Component {
     event.preventDefault()
     let newMatch={
       sports: event.target.sports.value,
-      username: event.target.username.value,
+      dateAndTime: event.target.dateAndTime.value,
+      duration: event.target.duration.value,
+      numberOfParticipants: event.target.numberOfParticipants.value,
+      equipment: event.target.equipment.value,
       completed: false
     }
 
@@ -181,15 +221,21 @@ class App extends Component {
   
     handleMatchChange=(event, match) => {
         axios.patch(`${config.API_URL}/api/matches/${match._id}`,{
-        sports: event.target.sports.value
-        //username: matches.username.value,
+        sports: event.target.sports.value,
+        dateAndTime: event.target.dateAndTime.value,
+        duration: event.target.duration.value,
+        numberOfParticipants: event.target.numberOfParticipants.value,
+        equipment: event.target.equipment.value,
         //completed: false
         }, {withCredentials: true})
         .then((response)=>{
             let newMatches = this.state.matches.map((singleMatch)=>{
                 if (match._id === singleMatch._id){
                     singleMatch.sports = response.data.sports
-                    //singleMatch.username = match.username
+                    singleMatch.dateAndTime = response.data.dateAndTime
+                    singleMatch.duration = response.data.duration
+                    singleMatch.numberOfParticipants = response.data.numberOfParticipants
+                    singleMatch.equipment = match.equipment
                 }
                 return singleMatch
             })
@@ -254,7 +300,7 @@ class App extends Component {
         }} />
 
         <Route exact path="/matches/:matchesId" render={(routeProps)=>{
-          return <MatchesDetail user={user} matches={matches} onCom={this.handleAddComment} {...routeProps} onAdd={this.handleJoin} />
+          return <MatchesDetail user={user} matches={matches} onCom={this.handleAddComment} {...routeProps} onAdd={this.handleJoin} onChange={this.handleMatchChange}/>
         }}/>
 
 

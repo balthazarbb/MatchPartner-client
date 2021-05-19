@@ -51,11 +51,11 @@ class MatchesDetail extends Component {
 
             <div>
                 <h1>Match Details</h1>
-                <div>{matches.sports}</div>
-                <div>{matches.username}</div>
-
-
-
+                <div>What: {matches.sports}</div>
+                <div>When: {matches.dateAndTime}</div>
+                <div>How long:{matches.duration}</div>
+                <div>Participants{matches.numberOfParticipants}</div>
+                <div>Bring: {matches.equipment}</div>
 
                 
                 {
@@ -65,12 +65,7 @@ class MatchesDetail extends Component {
                     })
                 }
 
-                {
-                    matches.commentId.map((comment)=>{
-                        console.log(matches)
-                        return <li key={comment._id}>Comment: {comment.comment}</li>      
-                    })
-                }
+
 
                 
 
@@ -81,6 +76,14 @@ class MatchesDetail extends Component {
 
                 <AddComment onCom={onCom} comments={comments}  matchId={matches._id} />
                   <div> Comments: </div>
+
+
+                {
+                    matches.commentId.map((comment)=>{
+                        console.log(matches)
+                        return <li key={comment._id}>Comment: {comment.comment}</li>      
+                    })
+                }
                         
             </div>
         )
@@ -88,27 +91,3 @@ class MatchesDetail extends Component {
 }
 
 export default MatchesDetail
-
-/*
-                {               
-                    comments.matchId.map((comments)=>{
-                        console.log(comments)
-                        return <li >Comments: {comments.comment}</li>   
-                        
-                    })
-                }
-
-
-
-                {
-                    comments.map((comments) => {
-                        return (
-                        <div key={comments._id}>
-                            <Link to={`/comments/${comments._id}`}>{comments.comments}</Link>
-                        </div>
-                        )
-                    })
-                }
-*/ 
-
-

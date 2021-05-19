@@ -20,6 +20,4 @@ class AddComment extends Component {
 export  default AddComment
 
 
-//<form onSubmit={(event)=>{onAdd(event, matchId)}}
-//<textarea type="text" name="comment"
 

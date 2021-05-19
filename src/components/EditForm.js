@@ -39,11 +39,14 @@ class EditForm extends Component {
 
         return (
         <div>
-        <form onSubmit={(event) => { onEdit(event, match) } }>
-            <input name="sports" type="text" onChange={this.handleMatchChange} value={match.sports}/>
-            
-            <button>Edit</button>
-        </form>  
+            <form onSubmit={(event) => { onEdit(event, match) } }>
+                <input name="sports" type="text" onChange={this.handleMatchChange} value={match.sports}/>
+                <input name="equipment" type="text" onChange={this.handleMatchChange} value={match.equipment}></input>
+                <input name="dateAndTime" type="number" onChange={this.handleMatchChange} value={match.dateAndTime}/>
+                <input name="duration" type="number" onChange={this.handleMatchChange} value={match.duration}/>
+                <input name="numberOfParticipants" type="number" onChange={this.handleMatchChange} value={match.numberOfParticipants}/>
+                <button>Edit</button>
+            </form>  
         </div>
             
         )

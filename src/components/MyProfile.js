@@ -12,7 +12,7 @@ import AllMatches from "./AllMatches";
 import Modal from "./AddForm";
 
 function MyProfile(props) {
-  const { username, onAdd, matches, onDelete, user } = props;
+  const { username, onAdd, matches, onDelete, user, handleMatchChange } = props;
 
   return (
     <div>
@@ -33,7 +33,7 @@ function MyProfile(props) {
         <CardActions></CardActions>
       </Card>
       <Button size="small"></Button>
-      <AllMatches onAdd={onAdd} matches={matches} onDelete={onDelete} />
+      <AllMatches onAdd={onAdd} matches={matches} onDelete={onDelete} onChange={handleMatchChange}/>
     </div>
   );
 }
