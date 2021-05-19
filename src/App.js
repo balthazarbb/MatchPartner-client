@@ -18,7 +18,9 @@ class App extends Component {
     user: null,
     error: null,
     fetchingUser: true,
-    matches: []
+    matches: [],
+    comments: [],
+  
   }
 
   handleSignUp = (e) => {
@@ -146,32 +148,59 @@ class App extends Component {
     });
 
   }
-/*
-  handleAddComment = (event) => {
+
+  
+
+  handleAddComment = (event, matchId) => {
     //update DB and the state
     event.preventDefault()
+      console.log(event.target.comment.value)
     let newComment={
-      user: event.target.user.value,
-      myComment: event.target.myComment.value,
-      completed: false
+      userId: this.state.user._id,
+      comment: event.target.comment.value,
     }
+
     console.log(event)
-    axios.post(`${config.API_URL}/api/createcomment`, newComment, {withCredentials: true})
-    .then((result) => {
-      this.setState({
-         comments: [result.data, ...this.state.matches]
-        }, () => {
-          console.log(this.state.matches)
-          this.props.history.push('/profile')
+    axios.post(`${config.API_URL}/api/createcomment`, {newComment}, {withCredentials: true})
+    .then((response) => {                          //matchId wrong?????!!!!!!
+      axios.patch(`${config.API_URL}/api/matches/${matchId}/addcomment`, {comment:response.data._id}, {withCredentials: true})
+      .then((result)=>{
+        this.setState({
+         comments: [response.data, ...this.state.comments],
+         matches:[result.data, ...this.state.matches]
         })
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
       console.log('add comment fail')
-    });
+    })
+         // this.props.history.push('/profile')
+        
+      })
 
   }
+  
+    handleMatchChange=(event, match) => {
+        axios.patch(`${config.API_URL}/api/matches/${match._id}`,{
+        sports: event.target.sports.value
+        //username: matches.username.value,
+        //completed: false
+        }, {withCredentials: true})
+        .then((response)=>{
+            let newMatches = this.state.matches.map((singleMatch)=>{
+                if (match._id === singleMatch._id){
+                    singleMatch.sports = response.data.sports
+                    //singleMatch.username = match.username
+                }
+                return singleMatch
+            })
+            this.setState({
+                matches: newMatches
+            },()=>{
+                this.props.history.push('/profile')
+            })
+        })
+        }
 
-  */
 
   handleDelete = (matches)=>{
       axios.delete(`${config.API_URL}/api/matches/${matches}`, {withCredentials: true})
@@ -225,7 +254,7 @@ class App extends Component {
         }} />
 
         <Route exact path="/matches/:matchesId" render={(routeProps)=>{
-          return <MatchesDetail user={user} matches={matches} {...routeProps} onAdd={this.handleJoin} />
+          return <MatchesDetail user={user} matches={matches} onCom={this.handleAddComment} {...routeProps} onAdd={this.handleJoin} />
         }}/>
 
 

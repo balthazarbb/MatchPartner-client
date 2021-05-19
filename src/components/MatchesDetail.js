@@ -35,7 +35,8 @@ class MatchesDetail extends Component {
         console.log(this.props)
         const {matches} = this.state
 
-        const {onAdd, onDelete, user, match, comments}= this.props
+
+        const {onAdd, onCom, onDelete, user, match, comments}= this.props
         console.log(matches)
 
         if(!user ){
@@ -53,26 +54,33 @@ class MatchesDetail extends Component {
                 <div>{matches.sports}</div>
                 <div>{matches.username}</div>
 
-                <AddComment onAdd={this.handleAddComment} comments={comments}   />
-                  <div> Comments: </div>
+
 
 
                 
                 {
-                    matches.userId.map((match)=>{
+                    matches.userId.map((user)=>{
                         console.log(matches)
-                        return <li >Participants: {match.username}</li>   
-                        
+                        return <li key={user._id}>Participants: {user.username}</li>      
                     })
                 }
 
+                {
+                    matches.commentId.map((comment)=>{
+                        console.log(matches)
+                        return <li key={comment._id}>Comment: {comment.comment}</li>      
+                    })
+                }
+
+                
 
 
 
-
-                   
 
                 <button onClick={()=> {onAdd(matches._id)}}>Join</button>
+
+                <AddComment onCom={onCom} comments={comments}  matchId={matches._id} />
+                  <div> Comments: </div>
                         
             </div>
         )
@@ -82,10 +90,25 @@ class MatchesDetail extends Component {
 export default MatchesDetail
 
 /*
-                                 {
-                    comments.commentId.map((comment)=>{
+                {               
+                    comments.matchId.map((comments)=>{
                         console.log(comments)
-                        return <li >Comments: {comment.}</li>   
+                        return <li >Comments: {comments.comment}</li>   
                         
                     })
+                }
+
+
+
+                {
+                    comments.map((comments) => {
+                        return (
+                        <div key={comments._id}>
+                            <Link to={`/comments/${comments._id}`}>{comments.comments}</Link>
+                        </div>
+                        )
+                    })
+                }
 */ 
+
+

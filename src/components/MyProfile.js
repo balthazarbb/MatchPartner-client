@@ -12,7 +12,7 @@ import AllMatches from "./AllMatches";
 import Modal from "./AddForm";
 
 function MyProfile(props) {
-  const { user, onAdd, matches, onDelete } = props;
+  const { username, onAdd, matches, onDelete, user } = props;
 
   return (
     <div>

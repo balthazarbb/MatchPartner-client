@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 class AddComment extends Component {
 
 	render() {
-    const {onAdd} = this.props
+    const {onCom, matchId} = this.props
 		return (
-			<form onSubmit={onAdd}>
+			<form onSubmit={(event) => onCom(event, matchId)}>
 				<input name="comment"  type="text" placeholder="Comment"/>
 				<button type="submit" >Submit</button>
 			</form>
@@ -19,4 +19,7 @@ class AddComment extends Component {
 
 export  default AddComment
 
+
+//<form onSubmit={(event)=>{onAdd(event, matchId)}}
+//<textarea type="text" name="comment"
 

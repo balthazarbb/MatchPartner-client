@@ -8,14 +8,14 @@ import IconButton from '@material-ui/core/IconButton'
 import {Link} from 'react-router-dom'
 
 function Navbar(props) {
-    const {username, onLogout, user} = props
+    const {user ,onLogout} = props
     return(
         <AppBar position="static">
             <Toolbar>
                 <IconButton edge="start"  color="inherit" aria-label="menu">
                     
                 </IconButton>
-                    <Typography variant="h6" >
+                    <Typography >
                          <h1>MatchPartner</h1>
                     </Typography>
                 {   

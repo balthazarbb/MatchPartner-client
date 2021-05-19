@@ -10,6 +10,9 @@ class EditForm extends Component {
         match: {}
     }
 
+
+
+
     componentDidMount(){
         let matchId = this.props.match.params.matchId
         axios.get(`${config.API_URL}/api/matches/${matchId}`)
@@ -21,29 +24,35 @@ class EditForm extends Component {
         });
     }
 
-    handleSportsChange = (event) => {
-        let text = event.target.value
-        console.log(text)
-        let cloneMatch = JSON.parse(JSON.stringify(this.state.match))
-        cloneMatch.sports = text
-
+    handleMatchChange = (event) => {
+        let {name, value} = event.target
         this.setState({
-            match: cloneMatch
+            [name]: value
         })
     }
 
+
+
     render() {
-       // const {match} = this.state or props?
-        const {onEdit, match} = this.state
+        const {match} = this.state
+        const {onEdit} = this.props
 
         return (
-            <div>
-                <input type="text" onChange={this.handleSportsChange} value={match.sports}/>
-                <button onClick={ () => { onEdit(match) } }  >Edit</button>
-                
-            </div>
+        <div>
+        <form onSubmit={(event) => { onEdit(event, match) } }>
+            <input name="sports" type="text" onChange={this.handleMatchChange} value={match.sports}/>
+            
+            <button>Edit</button>
+        </form>  
+        </div>
+            
         )
     }
 }
 
 export default EditForm
+
+
+/*
+<input name="equipment" type="text" onChange={this.handleMatchChange} value={match.equipment}></input>
+ */
