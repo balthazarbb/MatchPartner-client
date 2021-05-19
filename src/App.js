@@ -9,9 +9,9 @@ import MyProfile from "./components/MyProfile"
 import Navbar from './components/Navbar'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AllMatches from "./components/AllMatches"
-//import { Modal } from "@material-ui/core"
 import MatchesDetail from "./components/MatchesDetail"
 import AddForm from './components/AddForm'
+import ListMatches from "./components/ListMatches"
 
 class App extends Component {
   state = {
@@ -88,7 +88,8 @@ class App extends Component {
     .then((response) => {
       this.setState({matches: response.data})
       
-    }).catch((err) => {
+    })
+    .catch((err) => {
       
     });
 
@@ -101,7 +102,7 @@ class App extends Component {
     })
     .catch((errorObj) => {
       this.setState({
-        error: errorObj.response.data,
+        error: errorObj.data,
         fetchingUser: false,
       })
     })    
@@ -111,7 +112,7 @@ class App extends Component {
   handleJoin = (matchId) => {
     console.log(matchId)
     axios.patch(`${config.API_URL}/api/matchespart/${matchId}`,{}, {withCredentials: true})
-    //what to do?? push ? populate?? tried a lot..
+
     .then((result) => {
       
     })
@@ -145,8 +146,32 @@ class App extends Component {
     });
 
   }
+/*
+  handleAddComment = (event) => {
+    //update DB and the state
+    event.preventDefault()
+    let newComment={
+      user: event.target.user.value,
+      myComment: event.target.myComment.value,
+      completed: false
+    }
+    console.log(event)
+    axios.post(`${config.API_URL}/api/createcomment`, newComment, {withCredentials: true})
+    .then((result) => {
+      this.setState({
+         comments: [result.data, ...this.state.matches]
+        }, () => {
+          console.log(this.state.matches)
+          this.props.history.push('/profile')
+        })
+    })
+    .catch((err) => {
+      console.log('add comment fail')
+    });
 
-  
+  }
+
+  */
 
   handleDelete = (matches)=>{
       axios.delete(`${config.API_URL}/api/matches/${matches}`, {withCredentials: true})
@@ -177,11 +202,17 @@ class App extends Component {
       <div>
       <div>
       <Navbar onLogout={this.handleLogout} user={username} error={error} />
+
       </div>
       
       <Switch>
         
-        <Route exact path="/" component={HomePage} user={username}/>
+        <Route exact path="/" component={HomePage} user={user}/>
+
+        <Route  path="/list"  render={(routeProps) => {
+	        return  <ListMatches  matches={matches}  />
+        }}/>
+
         <Route  path="/signup"  render={(routeProps) => {
 	        return  <SignUp onSubmit={this.handleSignUp} {...routeProps}  />
         }}/>
@@ -196,7 +227,8 @@ class App extends Component {
         <Route exact path="/matches/:matchesId" render={(routeProps)=>{
           return <MatchesDetail user={user} matches={matches} {...routeProps} onAdd={this.handleJoin} />
         }}/>
-            
+
+
 
        </Switch>
        
@@ -207,3 +239,9 @@ class App extends Component {
 }
 
 export default withRouter(App)
+
+
+
+/*
+<Route exact path="/list" component={ListMatches} user={user} matches={matches}/>
+ */

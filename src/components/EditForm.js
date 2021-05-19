@@ -14,10 +14,9 @@ class EditForm extends Component {
         let matchId = this.props.match.params.matchId
         axios.get(`${config.API_URL}/api/matches/${matchId}`)
         .then((response) => {
-            this.setState({
-                match: response.data
-            })
-        }).catch((err) => {
+            this.setState({match: response.data})
+        })
+        .catch((err) => {
             console.log('Fetch failed')
         });
     }
@@ -34,8 +33,8 @@ class EditForm extends Component {
     }
 
     render() {
-        const {match} = this.state
-        const {onEdit} = this.props
+       // const {match} = this.state or props?
+        const {onEdit, match} = this.state
 
         return (
             <div>

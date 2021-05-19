@@ -18,15 +18,14 @@ function Navbar(props) {
                     <Typography variant="h6" >
                          <h1>MatchPartner</h1>
                     </Typography>
-                 {   
-                user? (    
-                <div>
-                    <Button onClick={onLogout} color="inherit">Logout</Button>
-                </div>
-                ):(
-                  <div>
-
-                  </div>  
+                {   
+                user ? (                    
+                    <Button onClick={onLogout}>Logout</Button>               
+                ) : (
+                  <>
+                    <Link  style={{marginLeft: '10px'}}  to="/signup">SignUp</Link>
+                    <Link  style={{marginLeft: '10px'}}  to="/signin">LogIn</Link>
+                  </>  
                 )
                 }
             </Toolbar>
@@ -34,3 +33,6 @@ function Navbar(props) {
     )
 }
 export default Navbar
+
+
+

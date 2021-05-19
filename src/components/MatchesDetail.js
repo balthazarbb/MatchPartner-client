@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import config from "../config"
 import {Link, Redirect} from 'react-router-dom'
 import EditForm from './EditForm'
-
+import AddComment from './AddComment'
 
 
 class MatchesDetail extends Component {
@@ -35,7 +35,7 @@ class MatchesDetail extends Component {
         console.log(this.props)
         const {matches} = this.state
 
-        const {onAdd, user, match}= this.props
+        const {onAdd, onDelete, user, match, comments}= this.props
         console.log(matches)
 
         if(!user ){
@@ -53,6 +53,10 @@ class MatchesDetail extends Component {
                 <div>{matches.sports}</div>
                 <div>{matches.username}</div>
 
+                <AddComment onAdd={this.handleAddComment} comments={comments}   />
+                  <div> Comments: </div>
+
+
                 
                 {
                     matches.userId.map((match)=>{
@@ -61,16 +65,15 @@ class MatchesDetail extends Component {
                         
                     })
                 }
-                
+
+
+
+
+
+                   
+
                 <button onClick={()=> {onAdd(matches._id)}}>Join</button>
-                            
-                
-             
-
-                    
-                
-
-
+                        
             </div>
         )
     }
@@ -79,5 +82,10 @@ class MatchesDetail extends Component {
 export default MatchesDetail
 
 /*
-<div to={`/matches/${match._id}`}>{match.sports}</div>
- */
+                                 {
+                    comments.commentId.map((comment)=>{
+                        console.log(comments)
+                        return <li >Comments: {comment.}</li>   
+                        
+                    })
+*/ 

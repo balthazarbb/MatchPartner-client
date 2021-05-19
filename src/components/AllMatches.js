@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
 import config from "../config"
 import { Link } from 'react-router-dom'
-//import Modal from './Modal'
 import AddForm from './AddForm'
 
 class AllMatches extends Component {
@@ -21,7 +20,7 @@ class AllMatches extends Component {
                     matches.map((match)=>{
                         return <div key={match._id}>    
                         <Link to={`/matches/${match._id}`}>{match.sports}</Link>
-                            <button>edit</button>
+                            <button onClick>edit</button>
                             <button onClick={()=> {onDelete(match._id)}}>delete</button>
                         </div>
                     })
