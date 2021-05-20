@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Switch, Route, withRouter, Link } from "react-router-dom"
+import { Switch, Route, withRouter} from "react-router-dom"
 import HomePage from "./pages/HomePage"
 import SignUp from "./components/SignUp"
 import SignIn from "./components/SignIn"
@@ -7,11 +7,9 @@ import axios from "axios"
 import config from "./config"
 import MyProfile from "./components/MyProfile"
 import Navbar from './components/Navbar'
-import CircularProgress from '@material-ui/core/CircularProgress';
-import AllMatches from "./components/AllMatches"
 import MatchesDetail from "./components/MatchesDetail"
-import AddForm from './components/AddForm'
 import ListMatches from "./components/ListMatches"
+import EditForm from "./components/EditForm"
 
 class App extends Component {
   state = {
@@ -86,42 +84,6 @@ class App extends Component {
       })
   }
 
-  fetchDetails = () => {
-        axios.get(`${config.API_URL}/api/matches`)
-    .then((response) => {
-      this.setState({matches: response.data})
-      
-    })
-    .catch((err) => {
-      
-    });
-
-    axios.get(`${config.API_URL}/api/user`, {withCredentials: true}) 
-    .then((response) => {
-      this.setState({ 
-        user: response.data,
-        fetchingUser: false,
-      })
-    })
-    .catch((errorObj) => {
-      this.setState({
-        error: errorObj.data,
-        fetchingUser: false,
-      })
-    })
-  }
- //Details wrong?
-  componentDidMount () {
-    this.fetchDetails()
-    }
-
-  componentDidUpdate (prevProps) {
-    if(prevProps.comments !== this.props.comments){
-      this.fetchDetails()
-        }
-    }
-
-/*
   componentDidMount() {
     axios.get(`${config.API_URL}/api/matches`)
     .then((response) => {
@@ -146,7 +108,7 @@ class App extends Component {
       })
     })    
   }
-*/
+
 
   handleJoin = (matchId) => {
     console.log(matchId)
@@ -226,7 +188,7 @@ class App extends Component {
         duration: event.target.duration.value,
         numberOfParticipants: event.target.numberOfParticipants.value,
         equipment: event.target.equipment.value,
-        //completed: false
+        completed: false
         }, {withCredentials: true})
         .then((response)=>{
             let newMatches = this.state.matches.map((singleMatch)=>{
@@ -235,7 +197,7 @@ class App extends Component {
                     singleMatch.dateAndTime = response.data.dateAndTime
                     singleMatch.duration = response.data.duration
                     singleMatch.numberOfParticipants = response.data.numberOfParticipants
-                    singleMatch.equipment = match.equipment
+                    singleMatch.equipment = response.data.equipment
                 }
                 return singleMatch
             })
@@ -267,7 +229,7 @@ class App extends Component {
   }
 
   render() {               
-    const {error, username, user, fetchingUser, matches} = this.state
+    const {error, user, fetchingUser, matches} = this.state
 
     if(fetchingUser){
       return <p>Loading . . . </p>
@@ -276,7 +238,7 @@ class App extends Component {
     return (
       <div>
       <div>
-      <Navbar onLogout={this.handleLogout} user={username} error={error} />
+      <Navbar onLogout={this.handleLogout} user={user} error={error} />
 
       </div>
       
@@ -300,8 +262,12 @@ class App extends Component {
         }} />
 
         <Route exact path="/matches/:matchesId" render={(routeProps)=>{
-          return <MatchesDetail user={user} matches={matches} onCom={this.handleAddComment} {...routeProps} onAdd={this.handleJoin} onChange={this.handleMatchChange}/>
+          return <MatchesDetail user={user} matches={matches} onCom={this.handleAddComment} {...routeProps} onAdd={this.handleJoin} />
         }}/>
+
+        <Route exact path="/matches/:matchesId" render={(routeProps)=>{
+          return <EditForm user={user}  onChange={this.handleMatchChange} matches={matches}  {...routeProps} />
+        }} />
 
 
 
@@ -315,8 +281,3 @@ class App extends Component {
 
 export default withRouter(App)
 
-
-
-/*
-<Route exact path="/list" component={ListMatches} user={user} matches={matches}/>
- */

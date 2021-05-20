@@ -1,5 +1,16 @@
-
 import React, { Component } from  'react'
+import TextField from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 class AddForm extends Component {
 
@@ -7,13 +18,12 @@ class AddForm extends Component {
     const {onAdd} = this.props
 		return (
 			<form onSubmit={onAdd}>
-				<input name="sports"  type="text" placeholder="Which Sport?"/>
-				<input name="dateAndTime"  type="text" placeholder="Date and Time"/>
-        		<input name="duration"  type="text" placeholder="Duration"/>
-        		<input name="numberOfParticipants"  type="number" placeholder="How many participants"/>
-				<input name="equipment"  type="text" placeholder="Equipment needed?"/>
-        		<button type="submit" >Submit</button>
-
+				<TextField name="sports" type="text" id="filled-basic" label="Which Sport?" variant="filled" />
+				<TextField name="dateAndTime" id="filled-basic" label="Date and Time?" variant="filled" />
+				<TextField name="duration"id="filled-basic" label="Duration?" variant="filled" />
+				<TextField name="numberOfParticipants"id="filled-basic" label="How many?" variant="filled" />
+				<TextField name="equipment" id="filled-basic" label="Equipment needed?" variant="filled" />
+				<Button type="submit" variant="contained" color="primary">Create Match</Button>
         
 			</form>
 		)

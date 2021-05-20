@@ -2,18 +2,13 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import config from '../config'
 
-
-
 class EditForm extends Component {
 
     state = {
         match: {}
     }
 
-
-
-
-    componentDidMount(){
+    fetchDetails = () => {
         let matchId = this.props.match.params.matchId
         axios.get(`${config.API_URL}/api/matches/${matchId}`)
         .then((response) => {
@@ -29,6 +24,18 @@ class EditForm extends Component {
         this.setState({
             [name]: value
         })
+    }
+
+
+
+    componentDidMount(){
+        this.fetchDetails()
+    }
+    
+    componentDidUpdate (prevProps) {
+        if(prevProps.comments !== this.props.comments){
+            this.fetchDetails()
+        }
     }
 
 
@@ -54,8 +61,3 @@ class EditForm extends Component {
 }
 
 export default EditForm
-
-
-/*
-<input name="equipment" type="text" onChange={this.handleMatchChange} value={match.equipment}></input>
- */

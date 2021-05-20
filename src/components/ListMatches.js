@@ -1,49 +1,42 @@
 import React, { Component } from 'react'
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText';
+//import { FixedSizeList } from 'react-window';
 
-import config from "../config"
-import { Link } from 'react-router-dom'
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '40%',
+    height: 500,
+    maxWidth: 300,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 class ListMatches extends Component {
-
-    render() {
+  
+    render(props) {
      const {matches} = this.props
         return (
             <div>
-              <h1>welcome to the list</h1>
-              <p>list in here</p>
+              <h2>All available matches</h2>
 
+                <ListItem >
 
               {
                   matches.map((match)=>{
                       return <div>>
-                      <Link to={`/matches/${match._id}`}>{match.sports}</Link>
+                      <Button to={`/matches/${match._id}`}>{match.sports}</Button>
                       </div>
                   })
-              }
-
-
-
-
-
-
-                
+              }    
+              </ListItem> 
+                  
             </div>
+            
         )
     }
 }
 
 export default ListMatches
-
-
-/*
-
-              {
-                  matches.map((match)=>{
-                      return <div> key={match._id}>
-                      <Link to={`/matches/${match._id}`}>{match.sports}</Link>
-                      </div>
-                  })
-              }
-
-*/

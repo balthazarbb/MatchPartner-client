@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import config from "../config"
-import { Link } from 'react-router-dom'
-
 
 class AddComment extends Component {
 
@@ -18,6 +14,3 @@ class AddComment extends Component {
 }
 
 export  default AddComment
-
-
-

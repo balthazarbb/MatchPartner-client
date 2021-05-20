@@ -1,19 +1,17 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import config from "../config"
-import {Link, Redirect} from 'react-router-dom'
-import EditForm from './EditForm'
+import {Redirect} from 'react-router-dom'
 import AddComment from './AddComment'
-
+import ListGroup from 'react-bootstrap/ListGroup'
+import Card from 'react-bootstrap/Card'
 
 class MatchesDetail extends Component {
     
     state={
-        matches: null,
-        
+        matches: null  
     }
      
-
     componentDidMount(){
         console.log(this.props)
         let matchesId = this.props.match.params.matchesId
@@ -36,7 +34,7 @@ class MatchesDetail extends Component {
         const {matches} = this.state
 
 
-        const {onAdd, onCom, onDelete, user, match, comments}= this.props
+        const {onAdd, onCom, user, comments}= this.props
         console.log(matches)
 
         if(!user ){
@@ -51,27 +49,22 @@ class MatchesDetail extends Component {
 
             <div>
                 <h1>Match Details</h1>
-                <div>What: {matches.sports}</div>
-                <div>When: {matches.dateAndTime}</div>
-                <div>How long:{matches.duration}</div>
-                <div>Participants{matches.numberOfParticipants}</div>
-                <div>Bring: {matches.equipment}</div>
+                <Card style={{ width: '18rem' }}>
+                    <ListGroup variant="flush">
+                    <ListGroup.Item>What: {matches.sports}</ListGroup.Item>
+                    <ListGroup.Item>When: {matches.dateAndTime}</ListGroup.Item>
+                    <ListGroup.Item>How long:{matches.duration}</ListGroup.Item>
+                    <ListGroup.Item>Participants{matches.numberOfParticipants}</ListGroup.Item>
+                    <ListGroup.Item>Bring: {matches.equipment}</ListGroup.Item>
+                    </ListGroup>
+                </Card>
 
-                
                 {
                     matches.userId.map((user)=>{
                         console.log(matches)
                         return <li key={user._id}>Participants: {user.username}</li>      
                     })
                 }
-
-
-
-                
-
-
-
-
                 <button onClick={()=> {onAdd(matches._id)}}>Join</button>
 
                 <AddComment onCom={onCom} comments={comments}  matchId={matches._id} />
