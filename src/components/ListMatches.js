@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText';
-//import { FixedSizeList } from 'react-window';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +27,7 @@ class ListMatches extends Component {
               {
                   matches.map((match)=>{
                       return <div>>
-                      <Button to={`/matches/${match._id}`}>{match.sports}</Button>
+                      <Link to={`/matches/${match._id}`}>{match.sports}</Link>
                       </div>
                   })
               }    

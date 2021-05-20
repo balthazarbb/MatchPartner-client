@@ -49,6 +49,7 @@ class MatchesDetail extends Component {
 
             <div>
                 <h1>Match Details</h1>
+
                 <Card style={{ width: '18rem' }}>
                     <ListGroup variant="flush">
                     <ListGroup.Item>What: {matches.sports}</ListGroup.Item>

@@ -30,7 +30,7 @@ class AllMatches extends Component {
                {
                     matches.map((match)=>{
                         return <div key={match._id}>    
-                        <Button to={`/matches/${match._id}`}>{match.sports}</Button>
+                        <Link to={`/matches/${match._id}`}>{match.sports}</Link>
                             <Button size="small" onClick={()=> {onChange(match._id)}}  variant="contained" color="primary" href="#contained-buttons">Edit</Button>
                             <Button size="small" onClick={()=> {onDelete(match._id)}} variant="contained" color="primary" href="#contained-buttons">Delete</Button>
                         </div>

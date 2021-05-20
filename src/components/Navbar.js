@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import {Link} from 'react-router-dom'
 
+
 function Navbar(props) {
     const {user ,onLogout} = props
     return(
@@ -16,6 +17,7 @@ function Navbar(props) {
                 </IconButton>
                     <Typography >
                          <h1>MatchPartner</h1>
+                         <img src={"https://res.cloudinary.com/dg3rhmvdt/image/upload/v1621518135/IMG_1098_isniex.png"} alt="logo"/>
                     </Typography>
                 {   
                 user ? (     
