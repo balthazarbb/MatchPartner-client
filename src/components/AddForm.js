@@ -6,8 +6,12 @@ import Button from '@material-ui/core/Button'
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
+    margin: theme.spacing(1),
+    width: '25ch',
+	position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     },
   },
 }));
@@ -16,6 +20,7 @@ class AddForm extends Component {
 
 	render() {
     const {onAdd} = this.props
+	
 		return (
 			<form onSubmit={onAdd}>
 				<TextField name="sports" type="text" id="filled-basic" label="Which Sport?" variant="filled" />

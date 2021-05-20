@@ -5,22 +5,46 @@ import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import AllMatches from "./AllMatches"
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 function MyProfile(props) {
-  const { onAdd, matches, onDelete, user, handleMatchChange } = props;
+  const { onAdd, matches, onDelete, user, handleMatchChange } = props;  
+  const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <div>
-      <Card variant="outlined">
+      <Card className={classes.root} variant="outlined">
         <CardContent>
-          <Typography color="textSecondary" gutterBottom>
-            <h2>Welcome {user.username}</h2>
+          <Typography className={classes.root} color="textSecondary" gutterBottom>
+            <h2>Welcome to your profile{user.username}</h2>
           </Typography>
-          <Typography color="textSecondary">
-            insert img here somewhen
+          <Avatar className={classes.root} src="/broken-image.jpg" />
+          <Typography className={classes.root} className={classes.pos} color="textSecondary">
           </Typography>
-          <Typography variant="body2" component="p">
-            go one step further
+          <Typography className={classes.root} variant="body2" component="p">
             <br />
             {'"Get up and do sports!"'}
           </Typography>

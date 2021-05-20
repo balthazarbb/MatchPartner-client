@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
     height: 400,
     maxWidth: 300,
     backgroundColor: theme.palette.background.paper,
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 

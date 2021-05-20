@@ -51,21 +51,18 @@ class MatchesDetail extends Component {
                 <h1>Match Details</h1>
 
                 <Card style={{ width: '18rem' }}>
+
                     <ListGroup variant="flush">
                     <ListGroup.Item>What: {matches.sports}</ListGroup.Item>
                     <ListGroup.Item>When: {matches.dateAndTime}</ListGroup.Item>
                     <ListGroup.Item>How long:{matches.duration}</ListGroup.Item>
                     <ListGroup.Item>Participants{matches.numberOfParticipants}</ListGroup.Item>
                     <ListGroup.Item>Bring: {matches.equipment}</ListGroup.Item>
+
                     </ListGroup>
                 </Card>
 
-                {
-                    matches.userId.map((user)=>{
-                        console.log(matches)
-                        return <li key={user._id}>Participants: {user.username}</li>      
-                    })
-                }
+
                 <button onClick={()=> {onAdd(matches._id)}}>Join</button>
 
                 <AddComment onCom={onCom} comments={comments}  matchId={matches._id} />
@@ -75,7 +72,14 @@ class MatchesDetail extends Component {
                 {
                     matches.commentId.map((comment)=>{
                         console.log(matches)
-                        return <li key={comment._id}>Comment: {comment.comment}</li>      
+                        return <li key={comment._id}> {comment.comment}</li>      
+                    })
+                }
+
+                {
+                    matches.userId.map((user)=>{
+                        console.log(matches)
+                        return <p key={user._id}>Who joins: {user.username}</p>      
                     })
                 }
                         

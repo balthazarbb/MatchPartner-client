@@ -5,14 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from 'react-router-dom'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '40%',
-    height: 500,
-    maxWidth: 300,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+
 
 class ListMatches extends Component {
   
