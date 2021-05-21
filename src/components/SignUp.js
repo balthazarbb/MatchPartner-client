@@ -26,10 +26,10 @@ function SignUp(props){
         <h1>SignUp</h1>
             <div className="form-group">
                 
-                <TextField  id="outlined-basic" label="Username" variant="outlined" id="InputUsername" name="username"/>
+                <TextField  id="outlined-basic InputUsername" label="Username" variant="outlined"  name="username"/>
             </div>
             <div className="form-group">
-                <TextField id="outlined-basic" type="password" label="Password" variant="outlined" id="InputPassword" name="password"/>
+                <TextField id="outlined-basic InputPassword" type="password" label="Password" variant="outlined"  name="password"/>
 
             </div>
             <Button type="submit" variant="contained" color="primary">Submit</Button>

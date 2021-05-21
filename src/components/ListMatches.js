@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
+//import { makeStyles } from '@material-ui/core/styles'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText';
+import ListItemText from '@material-ui/core/ListItemText'
 import {Link} from 'react-router-dom'
 
 
@@ -19,7 +19,7 @@ class ListMatches extends Component {
 
               {
                   matches.map((match)=>{
-                      return <div>>
+                      return <div>
                       <Link to={`/matches/${match._id}`}>{match.sports}</Link>
                       </div>
                   })

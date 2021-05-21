@@ -175,7 +175,7 @@ class App extends Component {
       .catch((err) => {
       console.log('add comment fail')
     })
-         // this.props.history.push('/profile')
+          this.props.history.push('/profile')
         
       })
 

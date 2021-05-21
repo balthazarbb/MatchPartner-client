@@ -32,14 +32,14 @@ const useStyles = makeStyles({
 function MyProfile(props) {
   const { onAdd, matches, onDelete, user, handleMatchChange } = props;  
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+
 
   return (
     <div>
       <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography className={classes.root} color="textSecondary" gutterBottom>
-            <h2>Welcome to your profile{user.username}</h2>
+            <h2>Welcome back {user.username}</h2>
           </Typography>
           <Avatar className={classes.root} src="/broken-image.jpg" />
           <Typography className={classes.root} className={classes.pos} color="textSecondary">

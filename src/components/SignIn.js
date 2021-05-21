@@ -26,7 +26,7 @@ function SignIn(props){
         <form onSubmit={onSignIn}>
             <h1>LogIn</h1>
             <div className="form-group">
-                <TextField  id="outlined-basic" label="Username" variant="outlined" id="InputUsername" name="username"/>
+                <TextField  id="outlined-basic" label="Username" variant="outlined"  name="username"/>
             </div>
             <div className="form-group">
                 <TextField id="outlined-basic" type="password" label="Password" variant="outlined" id="InputPassword" name="password"/>
