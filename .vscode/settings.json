@@ -4,7 +4,5 @@
         "titleBar.activeBackground": "#1b8b95",
         "titleBar.activeForeground": "#FFFCFD"
     },
-    "workbench.editorAssociations": [
-    
-    ]
+    "workbench.editorAssociations": {}
 }

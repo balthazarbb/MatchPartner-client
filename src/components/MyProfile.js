@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography"
 import AllMatches from "./AllMatches"
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-
+import {Link} from 'react-router-dom'
 const useStyles = makeStyles({
   root: {
     position: "relative",
@@ -36,6 +36,7 @@ function MyProfile(props) {
 
   return (
     <div>
+      
       <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography className={classes.root} color="textSecondary" gutterBottom>
@@ -51,6 +52,7 @@ function MyProfile(props) {
         </CardContent>
         <CardActions></CardActions>
       </Card>
+      <Link to="/add-form">Add Match</Link>
       <Button size="small"></Button>
       <AllMatches onAdd={onAdd} matches={matches} onDelete={onDelete} onChange={handleMatchChange}/>
     </div>

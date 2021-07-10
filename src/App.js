@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import MatchesDetail from "./components/MatchesDetail"
 import ListMatches from "./components/ListMatches"
 import EditForm from "./components/EditForm"
+import AddForm from "./components/AddForm"
 
 class App extends Component {
   state = {
@@ -136,6 +137,7 @@ class App extends Component {
     }
 
     console.log('something')
+
     axios.post(`${config.API_URL}/api/create`, newMatch, {withCredentials: true})
     .then((result) => {
       this.setState({
@@ -181,8 +183,8 @@ class App extends Component {
 
   }
   
-    handleMatchChange=(event, match) => {
-        axios.patch(`${config.API_URL}/api/matches/${match._id}`,{
+    handleMatchChange=(event, matches) => {
+        axios.patch(`${config.API_URL}/api/matches/${matches._id}`,{
         sports: event.target.sports.value,
         dateAndTime: event.target.dateAndTime.value,
         duration: event.target.duration.value,
@@ -192,7 +194,7 @@ class App extends Component {
         }, {withCredentials: true})
         .then((response)=>{
             let newMatches = this.state.matches.map((singleMatch)=>{
-                if (match._id === singleMatch._id){
+                if (matches._id === singleMatch._id){
                     singleMatch.sports = response.data.sports
                     singleMatch.dateAndTime = response.data.dateAndTime
                     singleMatch.duration = response.data.duration
@@ -268,8 +270,12 @@ class App extends Component {
         <Route exact path="/matches/:matchesId" render={(routeProps)=>{
           return <EditForm user={user}  onChange={this.handleMatchChange} matches={matches}  {...routeProps} />
         }} />
-
-
+        <Route path="/add-form" render={()=>{
+          return <AddForm onAdd={this.handleAdd}/>
+        }} />
+        <Route path="/matches/:matchesId/edit" render={(routeProps)=>{
+          return <EditForm onEdit={this.handleEdit} {...routeProps} />
+        }} />
 
        </Switch>
        

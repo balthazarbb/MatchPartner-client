@@ -47,7 +47,7 @@ class MatchesDetail extends Component {
 
         return (
 
-            <div>
+            <div class='profile'>
                 <h1>Match Details</h1>
 
                 <Card style={{ width: '18rem' }}>
