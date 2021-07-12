@@ -182,35 +182,6 @@ class App extends Component {
       })
 
   }
-  
-    handleMatchChange=(event, matches) => {
-        axios.patch(`${config.API_URL}/api/matches/${matches._id}`,{
-        sports: event.target.sports.value,
-        dateAndTime: event.target.dateAndTime.value,
-        duration: event.target.duration.value,
-        numberOfParticipants: event.target.numberOfParticipants.value,
-        equipment: event.target.equipment.value,
-        completed: false
-        }, {withCredentials: true})
-        .then((response)=>{
-            let newMatches = this.state.matches.map((singleMatch)=>{
-                if (matches._id === singleMatch._id){
-                    singleMatch.sports = response.data.sports
-                    singleMatch.dateAndTime = response.data.dateAndTime
-                    singleMatch.duration = response.data.duration
-                    singleMatch.numberOfParticipants = response.data.numberOfParticipants
-                    singleMatch.equipment = response.data.equipment
-                }
-                return singleMatch
-            })
-            this.setState({
-                matches: newMatches
-            },()=>{
-                this.props.history.push('/profile')
-            })
-        })
-        }
-
 
   handleDelete = (matches)=>{
       axios.delete(`${config.API_URL}/api/matches/${matches}`, {withCredentials: true})
@@ -228,6 +199,32 @@ class App extends Component {
       .catch((err) => {
         console.log('delete not working')
       });
+  }
+
+  handleEdit =(matches)=>{
+    axios.patch(`${config.API_URL}/api/matches/${matches._id}`, matches)
+    .then((response) => {
+
+      let updatedMatches = this.state.matches.map ((singleMatch)=>{
+        if(singleMatch._id === matches._id){
+          singleMatch.sports = matches.sports
+          singleMatch.dateAndTime = matches.dateAndTime
+          singleMatch.duration = matches.duration
+          singleMatch.numberOfParticipants = matches.numberOfParticipants
+          singleMatch.equipment = matches.equipment
+        }
+        return singleMatch
+      })
+      this.setState({
+        matches: updatedMatches 
+      },()=>{
+        this.props.history.push('/profile')
+      })
+    })
+    .catch((err) => {
+      
+    });
+
   }
 
   render() {               

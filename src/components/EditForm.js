@@ -27,69 +27,93 @@ class EditForm extends Component {
 	}
 
 	handleSportsChange = (event) => {
-		let newMatch = event.target.value
+		let newSports = event.target.value
         
 		const { matches } = this.state
-		let clonedMatches = JSON.parse(JSON.stringify(matches))
+		let cloneMatches = JSON.parse(JSON.stringify(matches))
 
-		clonedMatches.sports = newMatch
+		cloneMatches.sports = newSports
 
 		this.setState({
-			matches: clonedMatches
+			matches: cloneMatches
 		})
 	}
 
     handleDateAndTimeChange = (event) => {
-		let newMatch = event.target.value
+		let newDate = event.target.value
         
 		const { matches } = this.state
-		let clonedMatches = JSON.parse(JSON.stringify(matches))
+		let cloneMatches = JSON.parse(JSON.stringify(matches))
 
-		clonedMatches.dateAndTime = newMatch
+		cloneMatches.dateAndTime = newDate
 
 		this.setState({
-			matches: clonedMatches
+			matches: cloneMatches
 		})
 	}
 
     handleDurationChange = (event) => {
-		let newMatch = event.target.value
+		let newDuration = event.target.value
         
 		const { matches } = this.state
-		let clonedMatches = JSON.parse(JSON.stringify(matches))
+		let cloneMatches = JSON.parse(JSON.stringify(matches))
 
-		clonedMatches.duration = newMatch
+		cloneMatches.duration = newDuration
 
 		this.setState({
-			matches: clonedMatches
+			matches: cloneMatches
 		})
 	}
     
     handleNumberOfParticipantsChange = (event) => {
-		let newMatch = event.target.value
+		let newPartici = event.target.value
         
 		const { matches } = this.state
-		let clonedMatches = JSON.parse(JSON.stringify(matches))
+		let cloneMatches = JSON.parse(JSON.stringify(matches))
 
-		clonedMatches.numberOfParticipants = newMatch
+		cloneMatches.numberOfParticipants = newPartici
 
 		this.setState({
-			matches: clonedMatches
+			matches: cloneMatches
 		})
 	}
 
     handleEquipmentChange = (event) => {
-		let newMatch = event.target.value
+		let newEquip = event.target.value
         
 		const { matches } = this.state
-		let clonedMatches = JSON.parse(JSON.stringify(matches))
+		let cloneMatches = JSON.parse(JSON.stringify(matches))
 
-		clonedMatches.equipment = newMatch
+		cloneMatches.equipment = newEquip
 
 		this.setState({
-			matches: clonedMatches
+			matches: cloneMatches
 		})
 	}
+
+	render() {
+		const { matches } = this.state
+		const { onEdit } = this.props
+
+		return (
+			<div>
+				<h3>Edit in page</h3>
+				<input onChange={this.handleSportsChange} type="text" value={matches.sports} />
+				<input onChange={this.handleDateAndTimeChange} type="text" value={matches.dateAndTime} />
+				<input onChange={this.handleDurationChange} type="text" value={matches.duration} />
+				<input onChange={this.handleNumberOfParticipantsChange} type="text" value={matches.numberOfParticipants} />
+				<input onChange={this.handleEquipmentChange} type="text" value={matches.equipment} />
+				<button onClick={() => {onEdit (matches)}} >Edit</button>
+			</div>
+		)
+	}
+}
+
+export default EditForm
+
+
+
+
 	/*
     state = {
         match: {}
@@ -132,22 +156,3 @@ class EditForm extends Component {
                 </form> 
 
 */
-	render() {
-		const { matches } = this.state
-		const { onEdit } = this.props
-
-		return (
-			<div>
-				<h3>Edit in here</h3>
-				<input onChange={this.handleSportsChange} type="text" value={matches.sports} />
-				<input onChange={this.handleDateAndTimeChange} type="text" value={matches.dateAndTime} />
-				<input onChange={this.handleDurationChange} type="text" value={matches.duration} />
-				<input onChange={this.handleNumberOfParticipantsChange} type="text" value={matches.numberOfParticipants} />
-				<input onChange={this.handleEquipmentChange} type="text" value={matches.equipment} />
-				<button onClick={() => {onEdit (matches)}} >Edit</button>
-			</div>
-		)
-	}
-}
-
-export default EditForm
