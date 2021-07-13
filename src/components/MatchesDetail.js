@@ -47,26 +47,30 @@ class MatchesDetail extends Component {
 
         return (
 
-            <div class='profile'>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+            }}>
                 <h1>Match Details</h1>
 
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem' }} >
 
-                    <ListGroup variant="flush">
+                    <ListGroup variant="outlined">
                     <ListGroup.Item>What: {matches.sports}</ListGroup.Item>
                     <ListGroup.Item>When: {matches.dateAndTime}</ListGroup.Item>
-                    <ListGroup.Item>How long:{matches.duration}</ListGroup.Item>
-                    <ListGroup.Item>Participants{matches.numberOfParticipants}</ListGroup.Item>
+                    <ListGroup.Item>How long: {matches.duration}</ListGroup.Item>
+                    <ListGroup.Item>Participants: {matches.numberOfParticipants}</ListGroup.Item>
                     <ListGroup.Item>Bring: {matches.equipment}</ListGroup.Item>
 
                     </ListGroup>
                 </Card>
-
-
-                <button onClick={()=> {onAdd(matches._id)}}>Join</button>
+                <br/>
+                <button onClick={()=> {onAdd(matches._id)}}>Join this Match</button><br/>
 
                 <AddComment onCom={onCom} comments={comments}  matchId={matches._id} />
-                  <div> Comments: </div>
+                  <div> Comments: </div><br/>
 
 
                 {
@@ -83,6 +87,9 @@ class MatchesDetail extends Component {
                     })
                 }
                         
+
+                
+
             </div>
         )
     }

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import config from '../config'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import MatchesDetail from './MatchesDetail'
+
 
 class EditForm extends Component {
 	state = {
@@ -97,13 +97,28 @@ class EditForm extends Component {
 
 		return (
 			<div>
-				<h3>Edit in page</h3>
-				<input onChange={this.handleSportsChange} type="text" value={matches.sports} />
-				<input onChange={this.handleDateAndTimeChange} type="text" value={matches.dateAndTime} />
-				<input onChange={this.handleDurationChange} type="text" value={matches.duration} />
-				<input onChange={this.handleNumberOfParticipantsChange} type="text" value={matches.numberOfParticipants} />
-				<input onChange={this.handleEquipmentChange} type="text" value={matches.equipment} />
-				<button onClick={() => {onEdit (matches)}} >Edit</button>
+        	<h1>Edit your  Match</h1>
+            <div className="form-group">
+                
+                <TextField onChange={this.handleSportsChange} type="text" value={matches.sports} id="outlined-basic InputUsername" label="Which Sport?" variant="outlined"  name="sports"/>
+            </div>
+            <div className="form-group">
+                <TextField onChange={this.handleDateAndTimeChange} type="text" value={matches.dateAndTime} id="outlined-basic"  label="Date and Time?" variant="outlined"  name="dateAndTime"/>
+
+            </div>
+			<div className="form-group">
+                <TextField onChange={this.handleDurationChange} type="text" value={matches.duration} id="outlined-basic"  label="Duration?" variant="outlined"  name="duration"/>
+
+            </div>
+			<div className="form-group">
+                <TextField onChange={this.handleNumberOfParticipantsChange} type="text" value={matches.numberOfParticipants} id="outlined-basic"  label="How many?" variant="outlined"  name="numberOfParticipants"/>
+
+            </div>
+			<div className="form-group">
+                <TextField onChange={this.handleEquipmentChange} type="text" value={matches.equipment} id="outlined-basic"  label="Equipment needed?" variant="outlined"  name="equipment"/>
+
+            </div>
+            <Button onClick={() => {onEdit (matches)}} variant="contained" color="primary">Edit Match</Button>
 			</div>
 		)
 	}
@@ -113,46 +128,3 @@ export default EditForm
 
 
 
-
-	/*
-    state = {
-        match: {}
-    }
-
-    fetchDetails = () => {
-        let matchId = this.props.match.params.matchId
-        axios.get(`${config.API_URL}/api/matches/${matchId}`)
-        .then((response) => {
-            this.setState({match: response.data})
-        })
-        .catch((err) => {
-            console.log('Fetch failed')
-        });
-    }
-
-
-
-
-
-    componentDidMount(){
-        this.fetchDetails()
-    }
-    
-    componentDidUpdate (prevProps) {
-        if(prevProps.comments !== this.props.comments){
-            this.fetchDetails()
-        }
-    }
-*/
-	/*               <input  type="text" value={matches.sports}/>
-                <input name="equipment" type="text" onChange={this.handleMatchChange} value={matches.equipment}></input>
-                <input name="dateAndTime" type="number" onChange={this.handleMatchChange} value={matches.dateAndTime}/>
-                <input name="duration" type="number" onChange={this.handleMatchChange} value={matches.duration}/>
-                <input name="numberOfParticipants" type="number" onChange={this.handleMatchChange} value={matches.numberOfParticipants}/> */
-
-	/*
-                <form onSubmit={(event) => { onEdit(event, matches) } }>
-
-                </form> 
-
-*/

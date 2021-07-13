@@ -35,7 +35,12 @@ function MyProfile(props) {
 
 
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+    }}>
       
       <Card className={classes.root} variant="outlined">
         <CardContent>
@@ -43,7 +48,7 @@ function MyProfile(props) {
             <h2>Welcome back {user.username}</h2>
           </Typography>
           <Avatar className={classes.root} src="/broken-image.jpg" />
-          <Typography className={classes.root} className={classes.pos} color="textSecondary">
+          <Typography className={classes.root}  color="textSecondary">
           </Typography>
           <Typography className={classes.root} variant="body2" component="p">
             <br />

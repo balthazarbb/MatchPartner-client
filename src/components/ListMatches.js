@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import Button from '@material-ui/core/Button'
 //import { makeStyles } from '@material-ui/core/styles'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
 import {Link} from 'react-router-dom'
+
 
 
 
@@ -12,11 +10,16 @@ class ListMatches extends Component {
     render(props) {
      const {matches} = this.props
         return (
-            <div>
-              <h2>All available matches</h2>
-
-                <ListItem >
-
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+            }}> 
+              <h2>All matches</h2>
+              <br />
+              
+            <ul >
               {
                   matches.map((match)=>{
                       return <div>
@@ -24,12 +27,20 @@ class ListMatches extends Component {
                       </div>
                   })
               }    
-              </ListItem> 
-                  
+            </ul> 
+
+
             </div>
+                  
+            
+            
             
         )
     }
 }
 
 export default ListMatches
+
+
+
+

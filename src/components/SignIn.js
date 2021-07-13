@@ -29,7 +29,7 @@ function SignIn(props){
                 <TextField  id="outlined-basic" label="Username" variant="outlined"  name="username"/>
             </div>
             <div className="form-group">
-                <TextField id="outlined-basic" type="password" label="Password" variant="outlined" id="InputPassword" name="password"/>
+                <TextField id="outlined-basic" type="password" label="Password" variant="outlined" name="password"/>
             </div>
             <Button type="submit" variant="contained" color="primary">LogIn</Button>
             {
