@@ -12,6 +12,7 @@ import ListMatches from "./components/ListMatches"
 import EditForm from "./components/EditForm"
 import AddForm from "./components/AddForm"
 
+
 class App extends Component {
   state = {
     user: null,
@@ -238,9 +239,7 @@ class App extends Component {
       <div>
       <div>
       <Navbar onLogout={this.handleLogout} user={user} error={error} />
-
       </div>
-      
       <Switch>
         
         <Route exact path="/" component={HomePage} user={user}/>
