@@ -96,7 +96,12 @@ class EditForm extends Component {
 		const { onEdit } = this.props
 
 		return (
-			<div>
+			<div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+            }}>
         	<h1>Edit your  Match</h1>
             <div className="form-group">
                 
